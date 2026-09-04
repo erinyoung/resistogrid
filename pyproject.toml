@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "resistogrid"
-version = "0.1.0"
+version = "0.1.0.20260807.1"
 description = "Pivot NCBI AMRFinder and AMRFinderPlus long-format TSV outputs into sample-by-gene matrices."
 readme = "README.md"
 requires-python = ">=3.8"
