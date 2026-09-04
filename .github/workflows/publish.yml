@@ -1,0 +1,29 @@
+name: Publish to PyPI
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  pypi-publish:
+    name: Build and publish to PyPI
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # Required for PyPI Trusted Publishing (OIDC)
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Build distribution
+      run: |
+        python -m pip install --upgrade pip build
+        python -m build
+
+    - name: Publish package to PyPI
+      uses: pypa/gh-action-pypa-deploy@release/v1

@@ -1,0 +1,38 @@
+name: Update NCBI Database
+
+on:
+  workflow_dispatch:  # Trigger manually from GitHub UI
+  schedule:
+    - cron: '0 0 1 * *'  # Optional: Automatically run on the 1st of every month at midnight UTC
+
+jobs:
+  update-database:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Required to commit changes back to the repo
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+        cache: 'pip'
+
+    - name: Install package
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .
+
+    - name: Run Database Update
+      run: |
+        resistogrid --update-db
+
+    - name: Commit and Push Changes
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "db: update NCBI AMRFinder hierarchy data"
+        file_pattern: "src/resistogrid/data/*"
+        commit_author: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"

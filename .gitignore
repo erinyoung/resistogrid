@@ -216,3 +216,22 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Build & Distribution
+build/
+dist/
+*.egg-info/
+src/*.egg-info/
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# Synology NAS metadata
+@eaDir/
+*/@eaDir/
+
+# Local Output Files
+*.tsv
+*.png
+ReferenceGeneHierarchy.txt
