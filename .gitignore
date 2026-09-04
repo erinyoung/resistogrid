@@ -235,3 +235,4 @@ __pycache__/
 *.tsv
 *.png
 ReferenceGeneHierarchy.txt
+!tests/data/*.tsv
