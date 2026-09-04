@@ -1,9 +1,7 @@
-name: Update NCBI Database
+name: Update Database
 
 on:
-  workflow_dispatch:  # Trigger manually from GitHub UI
-  schedule:
-    - cron: '0 0 1 * *'  # Optional: Automatically run on the 1st of every month at midnight UTC
+  workflow_dispatch:
 
 jobs:
   update-database:
